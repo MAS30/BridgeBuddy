@@ -1,0 +1,101 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>
+        Community Forum 💬
+    </h1>
+
+    {% if user.is_authenticated %}
+
+    <a href="/community/create/" class="btn btn-primary">
+        Create Post
+    </a>
+
+    {% endif %}
+
+</div>
+
+{% for post in posts %}
+
+<div class="card shadow-sm border-0 mb-4">
+
+    <div class="card-body">
+
+        <h3>
+            {{ post.title }}
+        </h3>
+
+        <p class="text-muted">
+
+            Posted by {{ post.user.username }}
+            •
+            {{ post.created_at }}
+
+        </p>
+
+        <p>
+            {{ post.content }}
+        </p>
+
+        <hr>
+
+        <h5 class="mb-3">
+            Comments
+        </h5>
+
+        {% for comment in post.comments.all %}
+
+        <div class="mb-3">
+
+            <strong>
+                {{ comment.user.username }}
+            </strong>
+
+            <p>
+                {{ comment.content }}
+            </p>
+
+        </div>
+
+        {% empty %}
+
+        <p class="text-muted">
+            No comments yet.
+        </p>
+
+        {% endfor %}
+
+        {% if user.is_authenticated %}
+
+        <form method="POST"
+              action="/community/comment/{{ post.id }}/">
+
+            {% csrf_token %}
+
+            <div class="mb-3">
+
+                <textarea name="content"
+                          class="form-control"
+                          rows="2"
+                          placeholder="Write a comment..."></textarea>
+
+            </div>
+
+            <button class="btn btn-sm btn-dark">
+                Add Comment
+            </button>
+
+        </form>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

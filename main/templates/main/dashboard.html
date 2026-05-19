@@ -1,0 +1,61 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h1 class="mb-5">
+    Platform Dashboard 📊
+</h1>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm border-0 text-center p-4">
+
+            <h1 class="display-4">
+                {{ guides_count }}
+            </h1>
+
+            <h4>
+                Guides
+            </h4>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm border-0 text-center p-4">
+
+            <h1 class="display-4">
+                {{ posts_count }}
+            </h1>
+
+            <h4>
+                Community Posts
+            </h4>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4 mb-4">
+
+        <div class="card shadow-sm border-0 text-center p-4">
+
+            <h1 class="display-4">
+                {{ phrases_count }}
+            </h1>
+
+            <h4>
+                Turkish Phrases
+            </h4>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
